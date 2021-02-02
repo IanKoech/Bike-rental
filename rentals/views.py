@@ -3,8 +3,6 @@ from django.http import Http404, HttpResponse
 from .models import Renter
 
 # Create your views here.
-def home(request):
-   return render(request, 'home.html')
 
 def home(request):
     renters = Renter.objects.all()
