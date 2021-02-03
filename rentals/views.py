@@ -25,6 +25,7 @@ def search_results(request):
 
 def post_comment(request):
     renter = get_object_or_404(Renter, slug=slug)
+    #Code below retrieves all approved comments from database
     comments = renter.comments.filter(active = True)
     new_comment  = None
 
