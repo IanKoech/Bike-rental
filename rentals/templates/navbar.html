@@ -1,12 +1,17 @@
-<p style='text-align: center;'>Ollies</p>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
+        <div class="nav navbar-brand">
+          <a href="{% url 'home' %}">Home</a>
+        </div>
+        <div class="nav navbar-brand">
+          <a href="{% url 'about' %}">About Us</a>
+        </div>
         
       </div>
 
       <!-- Adding a search form  -->
-      <div class="col-sm-4 col-md-4 navbar-right">
+      <div class="col-sm-2 col-md-3 navbar-left">
 
         <form class="navbar-form" role="search" action="{% url 'search_results' %}">
 
@@ -19,6 +24,6 @@
 
         </form>
       </div>
-      <!-- search form end -->
+      
     </div>
   </nav>

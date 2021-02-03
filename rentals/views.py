@@ -10,6 +10,9 @@ def home(request):
     renters = Renter.objects.all()
     return render(request, 'home.html', {"renters":renters}) 
 
+def about(request):
+    return render(request, 'about.html')
+
 def search_results(request):
 
     if 'location' in request.GET and request.GET["location"]:
@@ -42,4 +45,4 @@ def post_comment(request):
     else:
         comment_form = CommentForm()
     
-    return render(request, 'comment.html',{'renter':renter, 'comments':comments, 'new_comment':new_comment, 'comment_form':comment_form})
+    return render(request, 'home.html',{'renter':renter, 'comments':comments, 'new_comment':new_comment, 'comment_form':comment_form})

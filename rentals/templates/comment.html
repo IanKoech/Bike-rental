@@ -1,15 +1,41 @@
 {% extends 'base.html'%}
 
 {%block content%}
-    {% for comment in comments %}
-        <div class='comments' style="padding: 10px;">
-            <p class='font-weight-bold'>
-                {{comment.name}}
-                <span class='text-muted font-weight-normal'>
-                
-                </span>
-                {{comment.body | linebreaks}}
-            </p>
+
+<div class='col-md-8 card mb-4  mt-3 '>
+        <div class='card-body'>
+            {% if new_comment %}
+            <div class='alert alert-success' role="alert">
+                Your comment is awaiting verification  to see whether community guidelines have been observer
+            </div>
+            {% else %}
+            <p>Leave a comment </p>
+            <form method="POST" action="{% url 'post_comment'%}">
+                {% csrf_token%}
+                {% bootstrap_form comment_form layout='inline'%}
+                <input type='submit' class='btn btn-primary'>
+            </form>
+            {% endif %}
         </div>
-    {%endfor%}
-{%endblock%}
+    </div> 
+  
+</div>
+            <div class='row'>
+                <div class="col-md-8 card mb-4  mt-3 ">
+                    <div class="card-body">
+                      {% if new_comment %}
+                      <div class="alert alert-success" role="alert">
+                        Your comment is awaiting moderation
+                      </div>
+                      {% else %}
+                      <h3>Leave a comment</h3>
+                      <form method="post" style="margin-top: 1.3em;">
+                        {{ comment_form.as_p }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                      </form>
+                      {% endif %}
+                    </div>
+                  </div>
+            </div>
+            
