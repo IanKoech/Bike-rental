@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+            {% if renters %}
+                <p>Found {{renters|length}} bike lessors in {{location}}</p>
+            {% else %}
+                <p>No bike lessors available in {{location}}</p>
+            {% endif %}
+        </div>
+
+        <div class='row'>
+            {% if location %}
+                {% for loc in location %}
+                    <div class='col-sm-6 col-md-3'>
+                        <p>{{loc.fi}}</p>
+                    </div>
+                {%endfor%}
+            {% endif %}
+        </div>
+    </div>
+{%endblock%}

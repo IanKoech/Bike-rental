@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block styles%}
+    {{ super() }}
+   
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-+d4wMJSxEP3vzs2qZBElQRTZMXwgWH15Nyn2K/9XjKiHmh3sBuk1Un/IbcdMcYC4" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+{% endblock %}
+
+{% block content%}
+<div style="background-color:rgb(13, 12, 28);font-style: normal;font-family: Montserrat;">
+    <div>
+        <div class='jumbotron' style="font-size: larger; text-align: center;">
+            <h2>Our Mission</h2>
+            <p>We are an organisation that provides bike rental services. You can get in touch with
+                a lessor depending on the location you are at at the moment. The lessors charge usage hourly,
+                though since these are trying times, charges may be discounted depending on the location and time 
+                of usage.
+            </p>
+        </div>
+        <div>
+            <h2 style="text-align: center; color:orangered;">Our Approach</h2>
+            <p></p>
+            <p></p>
+            <div class='container' style='color: seashell;'>
+                <div class='row'>
+                    <div class='col-md-4'>
+                        <h4>Connecting</h4>
+                        <p>Patnership is key to everything we do.We recognise that in order to provide people with one of the 
+                            best tramsport services on the go, collaboration is key. We work with many and verifed individuals and
+                            organisations to break down the artificial barriers that restrict easy and seamless transportation, so that  people 
+                            of all ages have the chance to be as healthy and enjoy bike rides in groups or individually at 
+                            very affordable.
+                        </p>
+                    </div>
+                    <div class='col-md-4'>
+                        <h4>Supporting</h4>
+                        <p>We believe in the potential of people to make healthy positive changes. We at Ollies aim to support people
+                            who are looking to get an extra source of income from owning bicycles and enabling them to lease them to our 
+                            verified and trusted customers when they are not in use. 
+                        </p>
+                    </div>
+                    <div class='col-md-4'>
+                        <h4>Specialties</h4>
+                        <p>We specialize in higher end bike rentals to cruise and also provide private 
+                            rides to the Karura Fores. We provide free bicycle delivery and pickup anywhere within Nairobi. We pride ourselves in providing excellent customer
+                            service- we bring the bikes to you and pick them up at your convenience, or you can drop them off at various locations.
+                             We pick you up at your hotel/home for our tours and drop you back off at the same location. Our tours are not more than 3-5
+                             persons at a time, so they are more like an adventure than a trip. Give us a call and see how we can make your riding experience better.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

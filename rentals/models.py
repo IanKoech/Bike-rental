@@ -21,3 +21,8 @@ class Renter(models.Model):
 
     def __str__(self):
         return self.first_name
+
+    @classmethod
+    def search_location(cls,search_term):
+        lessor = cls.objects.filter(location__icontains=search_term)
+        return lessor
