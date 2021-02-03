@@ -4,17 +4,19 @@
     <div class='container'>
         <div class='row'>
             {% if renters %}
-                <p>Found {{renters|length}} bike lessors in {{location}}</p>
+                <p>Found {{renters|length}} bike lessors in {{message}}</p>
             {% else %}
-                <p>No bike lessors available in {{location}}</p>
+                <p>No bike lessors available in {{message}}</p>
             {% endif %}
         </div>
 
         <div class='row'>
-            {% if location %}
-                {% for loc in location %}
+            {% if renters %}
+                {% for renter in renters %}
                     <div class='col-sm-6 col-md-3'>
-                        <p>{{loc.fi}}</p>
+                        <p>{{renter.first_name}}</p>
+                        <p>{{renter.contact}}</p>
+                        
                     </div>
                 {%endfor%}
             {% endif %}

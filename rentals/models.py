@@ -26,3 +26,14 @@ class Renter(models.Model):
     def search_location(cls,search_term):
         lessor = cls.objects.filter(location__icontains=search_term)
         return lessor
+
+class Comment(models.Model):
+    # Foreign key below establishes a many to one relationship with Renter model
+    comment = models.ForeignKey(Renter, on_delete= models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    body = models.TextField()
+    active = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
