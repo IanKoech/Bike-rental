@@ -3,44 +3,44 @@
 {%block styles%}
 {{block.super}}
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat" rel="stylesheet">
 {%endblock%}
 
 {% block content %}
 <div class="main" style="font-family: 'Montserrat'; display: ruby-base-container; background-color: 353535;">
-    <div class="text-center" style="background-color: 353535; height: 48px; width: auto;">
+    <div class="text-center">
         <h1 style="text-align: center; color: orangered;" >Ollies Bikes Rental Services</h1>  
     </div>
 </div>
->
+
 <!--<h2 class="text-center" style="font-family: 'Montserrat'; background-color: #353535; font-size: larger; font-weight: 900; color: ivory;"></h2>-->
 <hr>
-<div class="projects" style="font-family: 'Montserrat'; background-color:#353535; font-size: 13px;">
+<div class="projects" style="font-family: 'Montserrat'; font-size: 17px;">
     {%for renter in renters%}
-    <div class="project card">
+    <div >
 
        
         <div class="container">
             <div class="row">
-                <div class='card'>
-                    <div class='card-body'>
+                <div>
+                    <div>
                         <div class="col-md-6">
                             <p>{{renter.first_name}}  {{renter.second_name}}</p>
                             <p>{{renter.contact}}</p>
                             <p>Hourly Charges in Ksh: {{renter.charges}}</p>
-                            <p>Available in {{renter.location}}</p>
-                            <p>Description: {{renter.description}}</p>
+                            <a href="{% url 'details' renter.id%}"><button class='btn btn-primary' style="size: 6px;">Details</button></a>
+                            <!--  -->
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <img src="{{renter.image.url}}" alt="Bicycle Image" height="150px" width="auto">
                         </div>
-                        <div>
-                            <p>Comment about them <a href="{% url 'post_comment' renter.id %}">here</a></p>
-                        </div>
+                        
                     </div>
                 </div>
-                
-                
+            </div>  
+        </div>
+        <p></p>
+        <br>       
                 
                 
     </div>

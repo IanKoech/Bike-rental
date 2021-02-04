@@ -36,10 +36,10 @@ class Renter(models.Model):
 
 class Comment(models.Model):
     # Foreign key below establishes a many to one relationship with Renter model
-    post = models.ForeignKey(Renter, on_delete= models.CASCADE, related_name='comments')
+    renter = models.ForeignKey(Renter, on_delete= models.CASCADE, related_name='comments')
     author = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.TextField(max_length=160)
     active = models.BooleanField(default=False)
     
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body, self.name)
+        return 'Comment {} by {}'.format(self.text, self.author)

@@ -1,3 +1,35 @@
 {% extends 'base.html'%}
+{% load bootstrap3 %}
+{% block styles %}
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-+d4wMJSxEP3vzs2qZBElQRTZMXwgWH15Nyn2K/9XjKiHmh3sBuk1Un/IbcdMcYC4" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+{%endblock%}
+
 {% block content %}
+<div class="container" style="font-family: 'Montserrat';">
+    <div class="row">
+        
+                <div class="col-md-6">
+                    <p>{{renter.first_name}}  {{renter.second_name}}</p>
+                    <p>{{renter.contact}}</p>
+                    <p>Hourly Charges in Ksh: {{renter.charges}}</p>
+                    
+                    <p>Available in {{renter.location}}</p>
+                    <p>Description: {{renter.description}}</p>
+                    <br><br>
+                    
+                    {% for comment in comments %}
+                        <blockquote class='blockquote'>
+                            {{comment.author}}  {{comment.text}}
+                        </blockquote>
+                    {% endfor %}
+                </div>
+                <div class='col-md-2'></div>
+                <div class="col-md-4">
+                    <img src="{{renter.image.url}}" alt="Bicycle Image" height="200px" width="auto">
+                </div>
+                <div>
+                    <p>Comment about them <a href="{% url 'comment' renter.id %}">here</a></p>
+                </div>
+           
 {% endblock %}

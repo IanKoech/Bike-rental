@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from .models import Renter
+from .models import Renter, Comment
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -44,6 +44,12 @@ def filter_price(request):
 #     #Checks if the bike is rented out
 #     renter = get_object_or_404(Renter, user=request.user)
 
+@login_required(login_url='/accounts/login/')
+def details(request, id):
+    renter = Renter.objects.get(id = id)
+    
+    return render(request, 'details.html', {"renter":renter})
+
 def regsiter(request):
     form = UserCreationForm()
     if form.is_valid():
@@ -62,7 +68,7 @@ def post_comment(request, id):
     #     return render(request, 'comment.html',{"form": form})
     renter = Renter.objects.get(id=id)
     #Code below retrieves all approved comments from database
-    comments = renter.comments.filter(active = True)
+    comments = Comment.objects.filter(renter= renter)
     new_comment  = None
 
     if request.method == 'POST':
