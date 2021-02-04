@@ -17,6 +17,7 @@ class Renter(models.Model):
     location = models.CharField(max_length=15)
     description = models.TextField()
     image = models.ImageField(upload_to = 'images/', null= True)
+    is_rented = models.BooleanField(default=False)
     
 
     def __str__(self):
@@ -27,12 +28,17 @@ class Renter(models.Model):
         lessor = cls.objects.filter(location__icontains=search_term)
         return lessor
 
+    @classmethod
+    def filter_price(cls, price):
+        renters = cls.objects.filter(charges=price)
+        return renters
+
+
 class Comment(models.Model):
     # Foreign key below establishes a many to one relationship with Renter model
-    comment = models.ForeignKey(Renter, on_delete= models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=30)
-    email = models.EmailField()
-    body = models.TextField()
+    post = models.ForeignKey(Renter, on_delete= models.CASCADE, related_name='comments')
+    author = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    text = models.TextField()
     active = models.BooleanField(default=False)
     
     def __str__(self):

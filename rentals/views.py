@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 from .models import Renter
 from .forms import CommentForm
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -26,8 +28,39 @@ def search_results(request):
         message = "You haven't entered a location"
         return render(request, 'search.html',{"message":message})
 
-def post_comment(request):
-    renter = get_object_or_404(Renter, slug=slug)
+def filter_price(request):
+    if 'charges' in request.GET and request.GET['charges']:
+        price  = request.GET.get('charges')
+        renters =  Renter.filter_price(price)
+        message  = f"{price}"
+
+        return render(request,'filter.html', {"message":message, "renters":renters})
+    
+    else:
+        message = "Enter the price to filter"
+        return render(request, 'filter.html',{"message":message})
+
+# def is_rented(request):
+#     #Checks if the bike is rented out
+#     renter = get_object_or_404(Renter, user=request.user)
+
+def regsiter(request):
+    form = UserCreationForm()
+    if form.is_valid():
+        form.save()
+        user = form.cleaned_data['username']
+        return 
+
+@login_required(login_url='/accounts/login/')
+def post_comment(request, id):
+    # if request.method == 'POST':
+    #     form = CommentForm(request.POST)
+    #     if form.is_valid():
+    #         print('valid')
+    #     else:
+    #         form = CommentForm()
+    #     return render(request, 'comment.html',{"form": form})
+    renter = Renter.objects.get(id=id)
     #Code below retrieves all approved comments from database
     comments = renter.comments.filter(active = True)
     new_comment  = None
@@ -45,4 +78,4 @@ def post_comment(request):
     else:
         comment_form = CommentForm()
     
-    return render(request, 'home.html',{'renter':renter, 'comments':comments, 'new_comment':new_comment, 'comment_form':comment_form})
+    return render(request, 'comment.html',{'renter':renter, 'comments':comments, 'new_comment':new_comment, 'comment_form':comment_form})

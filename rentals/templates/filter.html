@@ -4,18 +4,20 @@
     <div class='container' style="font-family: 'Montserrat'; text-align: center;">
         <div class='row'>
             {% if renters %}
-                <p>Found {{renters|length}} bike lessors in {{message}}</p>
+                <p>Found {{renters|length}} bike lessors in price range {{message}}</p>
             {% else %}
-                <p>No bike lessors available in {{message}}</p>
+                <p>No bike lessors available in price range{{message}}</p>
             {% endif %}
         </div>
-
-        <div class='row'>
+        <p></p>
+        <br>
+        <div class='row' style="padding-right: 4px;margin: 3px;">
             {% if renters %}
                 {% for renter in renters %}
-                    <div class='col-sm-6 col-md-3'>
-                        <p>{{renter.first_name}}</p>
+                    <div class='col-md-6'>
+                        <p>{{renter.first_name}} {{renter.second_name}}</p>
                         <p>{{renter.contact}}</p>
+                        <p>{{renter.email}}</p>
                         <img src="{{renter.image.url}}" alt="Bicycle Image" height="250px" width="auto">
                     </div>
                 {%endfor%}
