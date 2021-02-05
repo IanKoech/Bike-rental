@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import django_heroku
 import dj_database_url
-from decouple import config,Csv
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,8 +28,8 @@ SECRET_KEY = 'c9vnn@65htr++j7xw5ps!tl^gy9r$#6ov52549hxcs+im5-0wa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = []
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',default="herokuapp.com", cast=Csv())
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -97,10 +97,6 @@ DATABASES = {
        )
    }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-
-DATABASES['default'].update(db_from_env)
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -154,6 +150,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
-
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
